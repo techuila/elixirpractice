@@ -7,12 +7,14 @@ defmodule Challenge01 do
       If one list is shorter than the other, ignore the excess elements of the longer list.
   """
 
-  def custom_zip(list1, list2) do
-    len1 = length(list1) - 1
-    len2 = length(list2) - 1
+  def custom_zip(list1, list2) when length(list1) === 0 or length(list2) === 0, do: []
 
-    Enum.map(0..if(len1 < len2, do: len1, else: len2), fn i ->
-      {Enum.at(list1, i), Enum.at(list2, i)}
+  def custom_zip(list1, list2) do
+    len1 = length(list1)
+    len2 = length(list2)
+
+    Enum.map(1..if(len1 < len2, do: len1, else: len2), fn i ->
+      {Enum.at(list1, i - 1), Enum.at(list2, i - 1)}
     end)
   end
 end
